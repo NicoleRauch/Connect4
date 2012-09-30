@@ -1,0 +1,96 @@
+DLGINCLUDE 1 "defs.h"
+
+DLGTEMPLATE IDR_PRODINFODLG PRELOAD MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Product Info", IDR_PRODINFODLG, 92, 8, 200, 124, 
+            FS_NOMOVEWITHOWNER | WS_VISIBLE, FCF_TITLEBAR
+    BEGIN
+        PUSHBUTTON      "~Ok", DID_OK, 80, 5, 40, 14
+        CTEXT           "Connect Four PM", -1, 30, 82, 140, 18, DT_VCENTER
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+                        PRESPARAMS PP_FONTNAMESIZE, "
+                        18.Helvetica(c) Copyright 1994 by"
+        CTEXT           "(c) Copyright 1994 by", -1, 35, 67, 130, 8, 
+                        DT_VCENTER | NOT WS_GROUP
+                        PRESPARAMS PP_FONTNAMESIZE, "10.HelvNicole Greiber"
+        CTEXT           "Nicole Greiber", -1, 46, 55, 108, 8, DT_VCENTER | 
+                        NOT WS_GROUP
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FF0000L
+                        PRESPARAMS PP_FONTNAMESIZE, "12.Helvand"
+        CTEXT           "and", -1, 46, 43, 108, 8, DT_VCENTER | NOT WS_GROUP
+                        PRESPARAMS PP_FONTNAMESIZE, "10.HelvRalf Seidel"
+        CTEXT           "Ralf Seidel", -1, 46, 31, 108, 8, DT_VCENTER | NOT 
+                        WS_GROUP
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FFFF00L
+                        PRESPARAMS PP_FONTNAMESIZE, "12.Helvÿd"
+        ICON            IDR_MAIN, IDR_MAIN, 90, 102, 20, 16, WS_GROUP
+    END
+END
+
+DLGTEMPLATE IDR_GAMEOPTDLG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Game Options", IDR_GAMEOPTDLG, 81, 5, 209, 130, 
+            FS_NOMOVEWITHOWNER | WS_VISIBLE, FCF_TITLEBAR
+    BEGIN
+        DEFPUSHBUTTON   "~Ok", DID_OK, 6, 4, 40, 14
+        PUSHBUTTON      "Cancel", DID_CANCEL, 51, 4, 40, 14, NOT WS_TABSTOP
+        GROUPBOX        "Red Player", -1, 6, 88, 197, 36
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FF0000L
+        AUTORADIOBUTTON "Human", IDC_HUMAN1, 15, 105, 41, 10, 
+                        BS_NOCURSORSELECT | WS_TABSTOP
+        AUTORADIOBUTTON "Computer", IDC_COMPUTER1, 15, 95, 54, 10, 
+                        BS_NOCURSORSELECT
+        CONTROL         "", IDC_SKILL1, 111, 95, 64, 11, WC_SLIDER, 
+                        SLS_HORIZONTAL | SLS_CENTER | SLS_SNAPTOINCREMENT | 
+                        SLS_BUTTONSTOP | SLS_HOMELEFT | SLS_PRIMARYSCALE1 | 
+                        WS_VISIBLE
+                        CTLDATA 12, 0, 10, 0, 0, 0
+        LTEXT           "Easy", -1, 88, 96, 20, 8, DT_VCENTER | NOT WS_GROUP
+        LTEXT           "Hard", -1, 178, 96, 20, 8, DT_VCENTER | NOT 
+                        WS_GROUP
+        GROUPBOX        "Yellow Player", -1, 6, 45, 197, 36
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FFFF00L
+        AUTORADIOBUTTON "Human", IDC_HUMAN2, 14, 61, 41, 10, 
+                        BS_NOCURSORSELECT | WS_TABSTOP
+        AUTORADIOBUTTON "Computer", IDC_COMPUTER2, 14, 51, 54, 10, 
+                        BS_NOCURSORSELECT
+        CONTROL         "", IDC_SKILL2, 111, 51, 64, 11, WC_SLIDER, 
+                        SLS_HORIZONTAL | SLS_CENTER | SLS_SNAPTOINCREMENT | 
+                        SLS_BUTTONSTOP | SLS_HOMELEFT | SLS_PRIMARYSCALE1 | 
+                        WS_VISIBLE
+                        CTLDATA 12, 0, 10, 0, 0, 0
+        LTEXT           "Fast", -1, 88, 52, 19, 8, DT_VCENTER | NOT WS_GROUP
+        LTEXT           "Slow", -1, 178, 52, 21, 8, DT_VCENTER | NOT 
+                        WS_GROUP
+        CONTROL         "", IDC_SKILLVAL1, 175, 105, 20, 12, WC_SPINBUTTON, 
+                        SPBS_ALLCHARACTERS | SPBS_READONLY | SPBS_SERVANT | 
+                        SPBS_JUSTDEFAULT | SPBS_JUSTRIGHT | SPBS_NOBORDER | 
+                        WS_VISIBLE
+        CONTROL         "", IDC_SKILLVAL2, 174, 61, 20, 12, WC_SPINBUTTON, 
+                        SPBS_ALLCHARACTERS | SPBS_READONLY | SPBS_SERVANT | 
+                        SPBS_JUSTDEFAULT | SPBS_JUSTRIGHT | SPBS_NOBORDER | 
+                        WS_VISIBLE
+        GROUPBOX        "Starting Player", -1, 6, 23, 197, 19
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00000000L
+        AUTORADIOBUTTON "Red", IDC_STARTRED, 13, 24, 39, 10, WS_TABSTOP
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FF0000L
+        AUTORADIOBUTTON "Yellow", IDC_STARTBLUE, 64, 24, 39, 10, WS_TABSTOP
+                        PRESPARAMS PP_FOREGROUNDCOLOR, 0x00FFFF00L
+    END
+END
+
+DLGTEMPLATE IDR_PROGOPTDLG LOADONCALL MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG  "Program Options", IDR_PROGOPTDLG, 91, 42, 136, 90, WS_VISIBLE, 
+            FCF_SYSMENU | FCF_TITLEBAR
+    BEGIN
+        GROUPBOX        "", -1, 6, 26, 121, 61, NOT WS_GROUP
+        AUTOCHECKBOX    "Enable Sound", IDC_SOUND, 18, 66, 82, 10
+        AUTOCHECKBOX    "Animate", IDC_ANIMATE, 18, 55, 82, 10
+        AUTOCHECKBOX    "Change Pointer", IDC_CHGPOINTER, 18, 44, 82, 10
+        AUTOCHECKBOX    "Save Settings on Exit", IDC_SAVESETTINGS, 18, 33, 
+                        101, 10
+        DEFPUSHBUTTON   "~Ok", DID_OK, 6, 4, 40, 14, WS_GROUP
+        PUSHBUTTON      "Cancel", DID_CANCEL, 49, 4, 40, 14, NOT WS_TABSTOP
+    END
+END

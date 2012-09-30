@@ -1,0 +1,122 @@
+/*************************************************************************\
+ * Get the valuation of one leaf.
+ * recurses all posible moves and gets the best one for color.
+ * Note: this function doesn't save the best move found. It only returns
+ * the valuation for a coin inserted in the column inscol.
+\*************************************************************************/
+PRIVATE int MiniMax( const byte inscol, const byte color,
+                     const int alpha, const int beta )
+{
+   int minmax;                   /* best result so far */
+   int i;
+
+   CInsertCoin( inscol, color );
+
+   if( !CTestEnd( inscol, color ) ) {
+      depth++;
+      if ( depth == maxdepth ) {
+         minmax = ValFunc();
+      } else {
+         /* If depth is odd we look for a minimum of all possiblities -
+          * otherwise get the maximum.
+          * Initialize minmax with alpha or beta. */
+         if ( depth & 1 ) {
+            minmax = beta;
+            for ( i = 1; minmax > alpha && i <= GameBoard.sizex; i++ ) {
+               if ( GameBoard.chgt[i] < GameBoard.sizey ) {
+                  minmax = min( minmax, MiniMax( i, ToggleColor( color ),
+                                                 alpha, minmax ) );
+               } /* end if */
+            } /* end for */
+         } else {
+            minmax = alpha;
+            for ( i = 1; minmax < beta && i <= GameBoard.sizex; i++ )   {
+               if ( GameBoard.chgt[i] < GameBoard.sizey ) {
+                  minmax = max( minmax, MiniMax( i, ToggleColor( color ),
+                                                 minmax, beta ) );
+               } /* end if */
+            } /* end for */
+         } /* end if depth & 1 */
+      } /* end if depth == maxdepth */
+      depth--;
+   } else {
+      minmax = (depth & 1) ? (depth - inf) : (inf - depth);
+   } /* end if CTestEnd */
+
+   CDeleteCoin( inscol );
+   return minmax;
+}
+
+/*************************************************************************\
+ *
+\*************************************************************************/
+PUBLIC byte GetComputerMove()
+{
+   int i;
+   int new;
+   int minmax = -inf;
+   int s;
+   byte firstmove;
+   byte bestcol = 0;
+   byte testcol;
+
+   ValFunc = Player->ValFunc;
+
+   maxdepth = Player->CalcDepth;
+   /* If maxdepth is greater than the number of the fields which are
+    * empty we adjust maxdepth so that we don't try to insert more coins
+    * than possible. Doing it this way we don't have to keep an eye on the
+    * end condition if a board is full. So we don't have to adjust the
+    * movecount variable and gain less calculation which result in a faster
+    * minmax algorithm. */
+   maxdepth = min( maxdepth, GameBoard.maxmoves - GameBoard.movecount );
+   assert( 0 < maxdepth && maxdepth <= MAXDEPTH );
+   switch( GameBoard.movecount ) {
+      case 0:
+         if ( GameBoard.sizex > 4 )
+            return (GameBoard.sizex + 1) / 2 + random(2) - 1;
+         else 
+            return (GameBoard.sizex + 1) / 2;
+      case 1:
+         firstmove = GameBoard.moves[1];
+         if ( 1 < firstmove && firstmove < GameBoard.sizex / 2 ) {
+            return firstmove + random(1);
+         } else if ( GameBoard.sizex > firstmove && firstmove > GameBoard.sizex / 2 ) {
+            return GameBoard.moves[1] - random(1);
+         }
+         else
+            return (GameBoard.sizex + 1) / 2 + random(2) - 1;
+      default:
+         /* Multitaskting considerations:
+          * To allow calculation of the next move without modifieing field
+          * copy field to cfield */
+         for ( i = 1; i <= GameBoard.sizey; i++ )
+            memcpy( GameBoard.cfield[i], GameBoard.field[i],
+                    (GameBoard.sizex + 1) * sizeof( byte ) );
+         /* hgt to chgt */
+         memcpy( GameBoard.chgt, GameBoard.hgt,
+                 (GameBoard.sizex + 1) * sizeof( byte ) );
+         testcol = GameBoard.sizex / 2 + 1;
+         depth = 0;
+         s = rand() & 1;
+         minmax = -inf;
+         for ( i = 0; i < GameBoard.sizex; ++i, s= !s, testcol+= s ? i : -i ) {
+            if ( GameBoard.chgt[testcol] < GameBoard.sizey ) {
+               new = MiniMax( testcol, Player->Color, minmax, inf );
+               GameBoard.lastval[testcol] = new;
+               if ( new > minmax ) {
+                  minmax = new;
+                  bestcol = testcol;
+               } 
+            } else {
+               GameBoard.lastval[testcol] = 0;
+            }
+         } /* end for */
+
+         GameBoard.lastval[0] = minmax;   /* save best valuation in field 0 */
+         assert( 0 < bestcol && bestcol <= GameBoard.sizex );
+         assert( depth == 0 );
+         return bestcol;
+   } /* end switch */
+}
+

@@ -1,0 +1,41 @@
+This is Connect Four, a PM-based game. Two players insert coins into a
+game board, and winner is who gets four coins in a line. The game supports
+the MMPM sound device, but does not depend on it.
+If you have sound, you can use the file c4mm.exe. If you don't have sound,
+this file will not work, and you must use c4nomm.exe instead.
+If you do not have MMPM installed, you can delete the files *.wav that are
+included in this zipfile.
+To play this game, you need OS/2 2.0 or above.
+For further information, please refer to the online help.
+Copyright (C) 1994 by Nicole Greiber and Ralf Seidel
+
+To create a file object on your desktop, simply type "install" at the
+command prompt. The correct executable will be installed (c4mm or 4cnomm).
+If you don't have EMX installed, you should place
+the files *.dll somewhere in your LIBPATH (the DLL's shipped with this
+package come with version 0.8h Fix 6). Please make sure to use the 
+latest DLL files available.
+
+The program also includes a little programmers' contest, please read
+the online help topic "The Connect Four Contest" for further information.
+In the file contest.zip you will find additional information for this
+contest, you need only unzip this file if you are interested in it.
+
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ 
+The authors can be contacted via eMail (InterNet):
+
+seidel3@wrcs3.urz.uni-wuppertal.de
+greiber@wrcs3.urz.uni-wuppertal.de
+
+or via Snail Mail:
+
+Ralf Seidel						Nicole Greiber
+Wuelfrather Str. 45			Brueningstr. 6
+42105 Wuppertal				42119 Wuppertal
+Germany							Germany
+
+

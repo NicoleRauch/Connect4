@@ -1,0 +1,11 @@
+;
+; Module Definition File rhythm.def
+;
+
+NAME rhythm WINDOWCOMPAT
+
+DESCRIPTION 'rhythm -- Copyright (c) 1994 by Marc E.E. van Woerkom. All rights reserved.'
+
+STACKSIZE 500000
+
+

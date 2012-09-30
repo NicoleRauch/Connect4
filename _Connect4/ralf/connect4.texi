@@ -1,0 +1,51 @@
+\input texinfo @c %-*-texinfo-*-
+@c %**start of header
+@setfilename Connect4.info
+@settitle The Connect Four Sources
+@c %**end of header
+
+@setchapternewpage off
+
+@c Start of the document body
+
+@titlepage
+@title Using cols
+@author Nicole Greiber and Ralf Seidel
+@end titlepage
+@c The next part doesn't appear in a printed manual
+@ifinfo
+This text documents the source code of Connect Four.
+Copyright @copyright{} 1994 by Nicole Greiber and Ralf Seidel
+@end ifinfo
+
+@c    nod-name, next,        previous, up
+@node	Top,	    Introduction, (dir),    (dir)
+
+@menu
+* Introduction:: A brief introduction to Connect Four
+* This file:: Why using texinfo for this documentation
+* The source files:: A short description of the source code
+@end menu
+
+@c    nod-name,	 	next node,		previous node, up node
+@node Description,	This file,		Top,		      Top
+@chapter Description
+
+@node This File, 		The source files,	Description,	Top
+@chapter Why using texinfo for this documentation
+
+@node	source files,			Top,				This file,		Top
+@chapter The Connect Four source files
+@menu
+* makefile:: The makefile
+* compile.h:: compile.h
+@end menu
+
+@node makefile,		compile.h,		source files,			source files
+@section The makefile
+
+@node compile.h,		compile.h,		makefile,		source files
+@section compile.h
+
+@bye
+

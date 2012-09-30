@@ -1,0 +1,105 @@
+If you want to take part in the Contest, you need the following
+files to compile a little text-only version of Connect Four with which
+you can test your valuation function. (For further information please
+refer to the online help). These are the files that you will find 
+in the contest.zip:
+
+Some header files that will be included in valuat.c: (you should not
+change them)
+
+compile.h
+game.h
+misc.h
+rand.h
+
+Some object files you need to create testgame.exe:
+
+game.obj
+game.o
+misc.obj
+misc.o
+rand.obj
+rand.o
+
+The makefile to compile testgame.exe with EMX:
+
+makefile
+
+The "basic" file that will produce the executable:
+
+testgame.c
+
+The executable:
+
+testgame.exe
+
+The file where you can include your valuation function:
+
+valuat.c
+valuat.h
+valuat.obj
+valuat.o
+
+In the file testgame.c you can adjust the player variables. and the
+board size. The lines where you do this are enclosed in %%%%%%%%%%% 
+characters, so they should be easy to find, and there you will also 
+find a description of what to do. You need not alter anything else 
+in testgame.c.
+
+In the file valuat.c you can insert your valuation function. Please add
+its header in valuat.h. In this function you can use the following
+variables:
+
+GameBoard.sizex	contains the number of columns in the game board
+GameBoard.sizey	contains the number of rows in the game board
+GameBoard.chgt[]		contains the number of coins already inserted in
+							each column (GameBoard.hgt[1] contains the number
+							of coins already inserted in column 1 (the leftmost
+							one) and so on)
+GameBoard.cfield[row][column]		contains the current board situation.
+							The fields Gameboard.cfield[1][1] to 
+							GameBoard.cfield[GameBoard.sizey][GameBoard.sizex]
+							contain the board fields. Empty fields have the
+							value EMPTY, fields with a coin inserted by
+							Player[0] (= red player) have the value RED, fields
+							with a coin inserted by Player[1] (= yellow player)
+							have the value BLUE (don't laugh, we started to
+							write the program with these two constants, but
+							later we found out that the original game is
+							designed in red and yellow. But YELLOW is such
+							a long word, so we kept BLUE). Around this "game
+							board" field is
+							a frame with the value BORDER (i. e. array fields
+							accessed by 
+							GameBoard.cfield[0][x] or GameBoard.cfield[x][0] or
+							GameBoard.cfield[GameBoard.sizey + 1][x] or
+							GameBoard.cfield[x][GameBoard.sizex + 1], where x
+							is a number, have the value BORDER)
+Player->Color			contains the color of the current player (either
+							RED or BLUE)
+Player->Mind			indicates whether the current player is COMPUTER
+							or HUMAN (it should always be COMPUTER because
+							when you refer to this variable, you are
+							calculating a move for the active player, which
+							must be the computer)
+
+
+You need not use other variables (except some locals, of course), and
+you should not change any of these. 
+In the file valuat.c you will find four valuation functions (two of
+which are quite trivial), and you can have a look at them to get an
+idea of how we have solved this problem. 
+
+If you still have any questions, please feel free to contact us at
+
+greiber@wrcs3.urz.uni-wuppertal.de 
+or
+seidel3@wrcs3.urz.uni-wuppertal.de
+or at the mail addresses listed in the online help (About the Authors).
+
+We hope to receive many good functions!
+
+
+
+
+

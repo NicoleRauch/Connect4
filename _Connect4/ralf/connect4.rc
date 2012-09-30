@@ -1,0 +1,70 @@
+/*************************************************************************\
+ * connect4.rc
+ *
+ * This resource file contains the menu and string	table definitions 
+ * for the program CONNECT4.EXE
+ *
+\*************************************************************************/
+#include <os2.h>
+#include "defs.h"
+
+ICON IDR_MAIN PRELOAD connect4.ico
+
+POINTER IDR_RDOWNPTR PRELOAD rhand.ptr
+POINTER IDR_BDOWNPTR PRELOAD yhand.ptr
+
+BITMAP IDR_BMP PRELOAD field59.bmp
+
+MENU IDR_MAIN PRELOAD
+	BEGIN
+	SUBMENU 	 "~File", IDM_FILE, MIS_TEXT
+		BEGIN
+		MENUITEM	 	"~Load Game",		 IDM_FILELOAD, 		MIS_TEXT
+		MENUITEM	 	"~Save",				 IDM_FILESAVE, 		MIS_TEXT
+/*		MENUITEM	 	"Save ~as...",		 IDM_FILESAVEAS,		MIS_TEXT */
+		MENUITEM SEPARATOR
+		MENUITEM	 	"E~xit",				 IDM_FILEEXIT, 		MIS_TEXT
+		END
+	SUBMENU 	 "~Game", IDM_GAME, MIS_TEXT
+		BEGIN
+		MENUITEM	 	"~Start",					IDM_GAMESTART,			MIS_TEXT
+		MENUITEM	 	"~Undo\tBackspace",		IDM_GAMEUNDO,	 		MIS_TEXT
+		MENUITEM	 	"~Hint",						IDM_GAMEHINT,	 		MIS_TEXT
+		MENUITEM SEPARATOR
+		MENUITEM	 	"~New",						IDM_GAMENEW,			MIS_TEXT
+		END
+	SUBMENU	"~Options", IDM_OPTS, MIS_TEXT
+		BEGIN
+		MENUITEM		"~Game",						IDM_GAMEOPTS,			MIS_TEXT
+		MENUITEM		"~Program",					IDM_PROGOPTS,			MIS_TEXT
+		MENUITEM		"~Save",						IDM_SAVEOPTS,			MIS_TEXT
+		END
+	SUBMENU 	 "~Help", IDM_HELP, MIS_TEXT
+		BEGIN
+		MENUITEM	  "Help ~Index",				SC_HELPINDEX,			MIS_SYSCOMMAND
+		MENUITEM	  "~General Help",			SC_HELPEXTENDED,		MIS_SYSCOMMAND
+		MENUITEM SEPARATOR
+		MENUITEM	  "~Product Information",	IDM_HELPPRODUCTINFO,	MIS_TEXT
+		END
+
+END
+
+STRINGTABLE	PRELOAD
+	BEGIN
+	IDS_APPNAME					 	"Connect_Four"
+	END
+
+ACCELTABLE IDR_MAIN
+	BEGIN
+	VK_BACKSPACE,   IDM_GAMEUNDO,		 VIRTUALKEY
+	END
+
+
+/* include help tables */
+
+rcinclude help.rc
+
+/* include dialog templates created by dialog editor */
+
+rcinclude dialog.dlg
+/*************************** End of connect4.rc ****************************/

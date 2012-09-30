@@ -1,0 +1,39 @@
+compile.h			Some defines for compiling
+connect4.c/.h		The "main" program source with initialization routines
+						and event handling
+defs.h				Necessary constant definitions 
+errmsgs.c/.h		Error messages and assertion
+game.c/.h			The functions responsible for the computer decisions
+						(this file works without PM - you can create a command
+						line game for testing or porting purposes, see testgame.c)
+misc.c/.h			Some small and useful functions
+mmsound.c/.h		The functions responsible for sound
+myassert.c/.h
+pmassert.c/.h		Assertion routines for PM applications
+pmgame.c/.h			The functions for the graphical display
+profile.c/.h		Functions for the profile connect4.ini
+rand.c/.h			A simple but acceptable random function
+testgame.c			Basic text input and output routines for testing (see game.c)
+connect4.def		The definition file (contains name, stacksize etc.)
+
+connect4.HLP		The online help document
+connect4.i0			The source for the online help document (before preprocessor)
+connect4.ipf		The source for the online help document (after preprocessor)
+help.rc				Helptable and Helpsubtable definitions
+connect4.rc			The resources and menues of Connect Four
+connect4.RES		The compiled version of Connect Four's resources
+dialog.dlg			The binary version of dialog.res
+dialog.res			The resource file for the dialog boxes
+connect4.texi		TeXinfo file to document the sources
+doc.tmp				This file
+text.tmp				Readme Template
+gnu.license			The GNU license
+install.cmd			File to create a desktop object
+makefile				The makefile to compile with EMX
+connect4.ico		The icon
+*.wav					The sound files
+field59.bmp			The bitmap of one of the gameboard's fields
+*.ptr					The changed mousepointers
+testgame.exe
+connect4.exe		Well, guess what!
+
